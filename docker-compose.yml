@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  backend:
+    build:
+      context: ./projectloyal2
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  frontend:
+    build:
+      context: ./Project
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: loyaldb
+      POSTGRES_USER: loyal
+      POSTGRES_PASSWORD: loyal123
+    ports:
+      - "5432:5432"
